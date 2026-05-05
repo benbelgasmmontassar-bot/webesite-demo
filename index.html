@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4 Years of Us 🤍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;500&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #f5ede0;
+    --rose: #c9736a;
+    --rose-light: #e8b4ae;
+    --rose-dark: #8b3e38;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --dark: #1a1008;
+    --ink: #2e1f14;
+    --petal: #f9e8e6;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--rose-light); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%); transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border: 1px solid rgba(201,115,106,0.4); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%); transition: all 0.18s ease;
+  }
+  .petal {
+    position: fixed; pointer-events: none; z-index: 1; opacity: 0;
+    background: radial-gradient(ellipse at 40% 30%, #f2c4be, #c9736a88);
+    border-radius: 60% 40% 60% 40% / 70% 30% 70% 30%;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-40px) rotate(0deg) translateX(0); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(40px); opacity: 0; }
+  }
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    position: relative; padding: 60px 20px; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,62,56,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,169,110,0.08) 0%, transparent 60%);
+  }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif; font-size: clamp(9px, 1.5vw, 11px);
+    letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase;
+    opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-number {
+    font-family: 'Cinzel', serif; font-size: clamp(100px, 22vw, 200px);
+    line-height: 0.85; color: transparent;
+    -webkit-text-stroke: 1px rgba(201,169,110,0.3);
+    position: relative; z-index: 0;
+    opacity: 0; animation: fadeIn 1.2s ease 0.5s forwards; user-select: none;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 7vw, 72px);
+    font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.1;
+    margin-top: -0.2em; opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-title span { color: var(--rose-light); }
+  .hero-subtitle {
+    font-size: clamp(14px, 2.5vw, 18px); color: var(--gold-light);
+    opacity: 0; margin-top: 28px; letter-spacing: 0.12em;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeIn 1s ease 2s forwards;
+  }
+  .scroll-hint span { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.6; }
+  .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+  .full-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(201,169,110,0.25), transparent); }
+  section { padding: 100px 20px; max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.5em;
+    color: var(--gold); text-transform: uppercase; display: block;
+    text-align: center; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300; font-style: italic; text-align: center;
+    color: var(--cream); margin-bottom: 60px;
+  }
+
+  /* PHOTOS */
+  .photos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .photo-card { position: relative; overflow: hidden; border-radius: 2px; }
+  .photo-card:first-child { grid-column: 1 / -1; }
+  .photo-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s ease;
+  }
+  .photo-card:first-child img { max-height: 520px; object-position: center top; }
+  .photo-card:not(:first-child) img { max-height: 380px; }
+  .photo-card:hover img { transform: scale(1.04); }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 20px 20px 16px;
+    background: linear-gradient(to top, rgba(20,10,4,0.75), transparent);
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.35em;
+    color: var(--gold-light); text-transform: uppercase;
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .photo-card:hover .photo-caption { opacity: 1; }
+
+  /* LETTER */
+  .letter-wrap {
+    position: relative; background: linear-gradient(160deg, #1e130a, #150e06);
+    border: 1px solid rgba(201,169,110,0.2); border-radius: 2px;
+    padding: 60px 56px; max-width: 700px; margin: 0 auto;
+  }
+  .letter-wrap::before {
+    content: '"'; position: absolute; top: 20px; left: 32px;
+    font-family: 'Cormorant Garamond', serif; font-size: 120px; line-height: 1;
+    color: var(--rose); opacity: 0.12;
+  }
+  .letter-text { font-size: clamp(16px, 2.2vw, 20px); line-height: 2; color: var(--cream); font-style: italic; font-weight: 300; position: relative; z-index: 1; }
+  .letter-text p + p { margin-top: 28px; }
+  .letter-signature { margin-top: 40px; text-align: right; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.25em; color: var(--gold); }
+
+  /* REASONS */
+  .reasons-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; }
+  .reason-item {
+    padding: 36px 28px; border: 1px solid rgba(201,169,110,0.1);
+    position: relative; overflow: hidden; transition: all 0.4s ease;
+  }
+  .reason-item::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,115,106,0.05), transparent); opacity: 0; transition: opacity 0.4s; }
+  .reason-item:hover { border-color: rgba(201,115,106,0.3); }
+  .reason-item:hover::before { opacity: 1; }
+  .reason-num { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.3em; color: var(--rose); opacity: 0.7; margin-bottom: 12px; display: block; }
+  .reason-text { font-size: clamp(16px, 2vw, 19px); font-style: italic; color: var(--cream); line-height: 1.6; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 80px 20px 60px; }
+  .footer-heart { font-size: 42px; display: block; animation: heartbeat 2s ease infinite; margin-bottom: 24px; }
+  @keyframes heartbeat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.15); } 28% { transform: scale(1); } 42% { transform: scale(1.08); } 70% { transform: scale(1); } }
+  .footer-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 36px); font-style: italic; color: var(--rose-light); }
+  .footer-date { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em; color: var(--gold); opacity: 0.5; margin-top: 20px; display: block; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .letter-wrap { padding: 40px 28px; }
+    .photos-grid { grid-template-columns: 1fr; }
+    .photo-card:first-child { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Four Years of Love</span>
+  <div class="hero-number">4</div>
+  <h1 class="hero-title">Happy Anniversary,<br><span>my love</span></h1>
+  <p class="hero-subtitle">Every moment with you is my favourite</p>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<section class="reveal">
+  <span class="section-label">Captured Moments</span>
+  <h2 class="section-title">Our Gallery</h2>
+  <div class="photos-grid">
+    <div class="photo-card">
+      <img src="imag/WhatsApp Image 2026-05-05 at 10.00.45 (1).jpeg" alt="">
+      <div class="photo-caption">You & Me 🤍</div>
+    </div>
+    <div class="photo-card">
+      <img src="imag/WhatsApp Image 2026-05-05 at 10.00.45 (2).jpeg" alt="">
+      <div class="photo-caption">A Favourite Day</div>
+    </div>
+    <div class="photo-card">
+      <img src="imag/WhatsApp Image 2026-05-05 at 10.00.45.jpeg" alt="">
+      <div class="photo-caption">Our Adventures</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="reveal">
+  <span class="section-label">From My Heart</span>
+  <h2 class="section-title">A Letter to You</h2>
+  <div class="letter-wrap">
+    <div class="letter-text">
+      <p>Four years. Four years of laughing at the same things, of quiet evenings that somehow become the best memories, of choosing each other every single day — even on the hard ones.</p>
+      <p>You have a way of making the ordinary feel like something worth keeping forever. The way you smile when you think nobody is watching. The way you make every room feel warmer just by being in it.</p>
+      <p>I do not have the right words to tell you what these four years have meant to me. But I hope you feel it — in every little thing, in every quiet moment — how deeply and completely you are loved.</p>
+      <p>Here is to every year still ahead of us. Here is to you, always.</p>
+    </div>
+    <div class="letter-signature">— Yours, forever 🤍</div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="reveal">
+  <span class="section-label">Always & Forever</span>
+  <h2 class="section-title">Why I Love You</h2>
+  <div class="reasons-list">
+    <div class="reason-item"><span class="reason-num">01</span><p class="reason-text">Your smile is the most beautiful thing I have ever seen.</p></div>
+    <div class="reason-item"><span class="reason-num">02</span><p class="reason-text">You make me feel safe in a way nobody else ever has.</p></div>
+    <div class="reason-item"><span class="reason-num">03</span><p class="reason-text">You laugh at my jokes — even the terrible ones.</p></div>
+    <div class="reason-item"><span class="reason-num">04</span><p class="reason-text">You are the first person I want to tell everything to.</p></div>
+    <div class="reason-item"><span class="reason-num">05</span><p class="reason-text">You are kind, even when it is difficult.</p></div>
+    <div class="reason-item"><span class="reason-num">06</span><p class="reason-text">Every day with you is the best day I have had so far.</p></div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<footer class="footer reveal">
+  <span class="footer-heart">🌹</span>
+  <p class="footer-text">Four years down,<br>a lifetime to go.</p>
+  <span class="footer-date">YEAR ONE · YEAR TWO · YEAR THREE · YEAR FOUR · ∞</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
+  });
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.cssText = `left:${Math.random()*100}vw;width:${8+Math.random()*10}px;height:${14+Math.random()*12}px;animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*12}s;`;
+    document.body.appendChild(p);
+  }
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
